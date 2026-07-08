@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Réalisations — Portfolio de MORET, Menuiserie &amp; Agencement (Yens, Vaud)</title>
+<meta name="description" content="Portfolio de l'atelier MORET : cuisines, escaliers, portes et fenêtres, cloisons, ébénisterie et menuiserie extérieure réalisés sur mesure dans le canton de Vaud." />
+<meta name="theme-color" content="#16110B" />
+<link rel="canonical" href="https://mmea.ch/realisations/" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232C231B'/%3E%3Cpath d='M9 22 Q9 11 18 11 Q26 11 26 17 Q26 21 21 21 Q17 21 17 18' fill='none' stroke='%23B5824A' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="MORET — Menuiserie & Agencement" />
+<meta property="og:title" content="Réalisations — Portfolio de MORET, Menuiserie &amp; Agencement (Yens, Vaud)" />
+<meta property="og:description" content="Portfolio de l'atelier MORET : cuisines, escaliers, portes et fenêtres, cloisons, ébénisterie et menuiserie extérieure réalisés sur mesure dans le canton de Vaud." />
+<meta property="og:locale" content="fr_CH" />
+<meta property="og:url" content="https://mmea.ch/realisations/" />
+<meta property="og:image" content="https://mmea.ch/assets/img/og/partage.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Réalisations — Portfolio de MORET, Menuiserie &amp; Agencement (Yens, Vaud)" />
+<meta name="twitter:description" content="Portfolio de l'atelier MORET : cuisines, escaliers, portes et fenêtres, cloisons, ébénisterie et menuiserie extérieure réalisés sur mesure dans le canton de Vaud." />
+<meta name="twitter:image" content="https://mmea.ch/assets/img/og/partage.jpg" />
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+<link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@500,700,800&f[]=switzer@400,500,600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/css/atelier.css" />
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+<a class="skip" href="#main">Aller au contenu</a>
+<div id="site-nav"></div>
+
+<main id="main">
+<section class="page-hero">
+  <svg class="wm" viewBox="0 0 33.7 35.4" aria-hidden="true"><use href="#copeau"/></svg>
+  <div class="wrap">
+    <nav class="crumb" aria-label="Fil d'Ariane"><a href="/">Accueil</a> <span>Réalisations</span></nav>
+    <p class="tag">Portfolio</p>
+    <h1>Sorties <span class="ghost">d'atelier.</span></h1>
+    <p class="lead">Chaque projet est dessiné, fabriqué à l'atelier du Moulin au Loup, puis posé par nos soins. Filtrez par type d'ouvrage et cliquez sur un projet pour voir les photos en grand.</p>
+    
+  </div>
+</section>
+
+<section class="sect io" data-io style="padding-top:54px">
+  <div class="wrap">
+    <h2 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0">Une sélection de nos réalisations sur mesure : cuisines, escaliers, portes, fenêtres, cloisons, ébénisterie et menuiserie extérieure</h2>
+    <div class="filtres" role="group" aria-label="Filtrer les réalisations" style="margin-top:0"><button class="chip" data-filter="tous" type="button" aria-pressed="true">Tous</button><button class="chip" data-filter="cuisine" type="button" aria-pressed="false">Cuisines &amp; agencements</button><button class="chip" data-filter="escalier" type="button" aria-pressed="false">Escaliers</button><button class="chip" data-filter="porte" type="button" aria-pressed="false">Portes &amp; fenêtres</button><button class="chip" data-filter="cloison" type="button" aria-pressed="false">Cloisons</button><button class="chip" data-filter="ebenisterie" type="button" aria-pressed="false">Ébénisterie</button><button class="chip" data-filter="exterieur" type="button" aria-pressed="false">Extérieur</button></div>
+    <p class="tag" id="pfCount" style="margin-bottom:26px" aria-live="polite"></p>
+    <!-- ► Tous les projets : générés automatiquement depuis assets/js/projets.js -->
+    <div class="projets-grid" data-projets="all"></div>
+  </div>
+</section>
+
+<section class="sect io" data-io style="padding-top:0">
+  <div class="wrap">
+    <h2 class="rv" style="--i:0;font-size:clamp(1.6rem,3vw,2.2rem)">Découvrez chaque <span class="ghost">savoir-faire.</span></h2>
+    <div class="xp-grid"><a href="/services/cuisines-agencements/">Cuisines &amp; agencements</a><a href="/services/portes-fenetres/">Portes &amp; fenêtres</a><a href="/services/escaliers/">Escaliers</a><a href="/services/cloisons/">Cloisons</a><a href="/services/ebenisterie-mobilier/">Ébénisterie &amp; mobilier</a><a href="/services/menuiserie-exterieure/">Menuiserie extérieure</a></div>
+  </div>
+</section>
+
+</main>
+
+<div id="site-footer"></div>
+
+<script src="/assets/js/partials.js"></script>
+<script src="/assets/js/projets.js"></script>
+<script>
+(function(){
+'use strict';
+/* — compteur de médias + badge vidéo + accès clavier — */
+document.querySelectorAll('.proj').forEach(function(fig){
+  var list=[].slice.call(fig.querySelectorAll('.proj-medias a'));
+  var nImg=list.filter(function(a){return a.getAttribute('data-type')!=='video'}).length;
+  var hasVid=list.some(function(a){return a.getAttribute('data-type')==='video'});
+  var box=fig.querySelector('.proj-img');
+  if(box&&list.length){
+    var chip=document.createElement('span');chip.className='proj-count';
+    chip.textContent=(nImg?nImg+' photo'+(nImg>1?'s':''):'')+(hasVid?(nImg?' \u00b7 ':'')+'vid\u00e9o':'');
+    if(chip.textContent)box.appendChild(chip);
+    if(hasVid){var pl=document.createElement('span');pl.className='proj-play';box.appendChild(pl);}
+  }
+  var h3=fig.querySelector('h3');
+  fig.setAttribute('role','button');fig.setAttribute('tabindex','0');
+  fig.setAttribute('aria-label','Voir le projet \u00ab '+(h3?h3.textContent:'')+' \u00bb en grand');
+  fig.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();fig.click();}});
+});
+/* — filtres, synchronisés avec l'ancre (/realisations/#escalier) — */
+var chips=[].slice.call(document.querySelectorAll('.filtres .chip'));
+var count=document.getElementById('pfCount');
+function apply(k,push){
+  var n=0;
+  document.querySelectorAll('.proj').forEach(function(f){
+    var ok=(k==='tous')||f.getAttribute('data-cat')===k;
+    f.style.display=ok?'':'none'; if(ok)n++;
+  });
+  var cur=null;
+  chips.forEach(function(c){
+    var on=c.getAttribute('data-filter')===k;
+    c.setAttribute('aria-pressed',on?'true':'false'); if(on)cur=c;
+  });
+  if(count)count.textContent=n+' projet'+(n>1?'s':'')+((k!=='tous'&&cur)?' — '+cur.textContent:'');
+  if(push!==false){try{history.replaceState(null,'',k==='tous'?location.pathname:'#'+k)}catch(e){}}
+}
+chips.forEach(function(c){c.addEventListener('click',function(){apply(c.getAttribute('data-filter'))})});
+var h=(location.hash||'').replace('#','');
+apply(chips.some(function(c){return c.getAttribute('data-filter')===h})?h:'tous',false);
+window.addEventListener('hashchange',function(){
+  var h=(location.hash||'').replace('#','');
+  apply(chips.some(function(c){return c.getAttribute('data-filter')===h})?h:'tous',false);
+});
+})();
+</script>
+<!-- Vercel Web Analytics -->
+<script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
