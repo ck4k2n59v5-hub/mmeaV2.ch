@@ -36,6 +36,9 @@ var reduced=mq('(prefers-reduced-motion: reduce)');
   g.setAttribute('position',new THREE.Float32BufferAttribute(pos,3));
   g.setAttribute('color',new THREE.Float32BufferAttribute(col,3));
   g.setIndex(idx);g.computeVertexNormals();
+  var ESS=(window.MMEA&&window.MMEA.essences)||{chene:{c:0xD99C55}};
+  var essKey=(window.MMEA&&window.MMEA.getEssence&&window.MMEA.getEssence())||'chene';
+  var target=new THREE.Color((ESS[essKey]||ESS.chene).c);
   var mat=new THREE.MeshStandardMaterial({vertexColors:true,color:new THREE.Color((ESS[essKey]||ESS.chene).c),roughness:.5,metalness:.08,side:THREE.DoubleSide});
   var grp=new THREE.Group();grp.add(new THREE.Mesh(g,mat));
   grp.rotation.set(-.5,.4,.18);scene.add(grp);
@@ -47,9 +50,6 @@ var reduced=mq('(prefers-reduced-motion: reduce)');
   scene.add(new THREE.Points(pg,new THREE.PointsMaterial({color:0xD9B98A,size:.035,transparent:true,opacity:.5,depthWrite:false})));
 
   var vel=.004,drag=false,lx=0,pulse=1,scaleBase=1,baseX=1.5,baseY=-.05;
-  var ESS=(window.MMEA&&window.MMEA.essences)||{chene:{c:0xD99C55}};
-  var essKey=(window.MMEA&&window.MMEA.getEssence&&window.MMEA.getEssence())||'chene';
-  var target=new THREE.Color((ESS[essKey]||ESS.chene).c);
   if(window.MMEA)window.MMEA.onEssence(function(k,v){target=new THREE.Color(v.c)});
   window.MMEA_COPEAU={kick:function(v){vel+=v;pulse=1.07}};
 
