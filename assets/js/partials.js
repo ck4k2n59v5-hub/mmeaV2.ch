@@ -5,13 +5,14 @@
       exactement comme avant. Le reste (en-tête, menu plein écran, pied de
       page, curseur, visionneuse, essences) est géré automatiquement.
 
-   Astuce : un élément SANS "href" (href: null) devient un simple intitulé
-   non cliquable qui chapeaute ses sous-liens (ex. « Services »).
+   Astuce : un élément avec "children" affiche ses sous-liens dessous.
+   S'il a AUSSI un "href", l'intitulé reste cliquable (ex. « Savoir-faire »
+   → ancre de la page + les 6 services listés en dessous). Un élément avec
+   "href: null" deviendrait un simple intitulé non cliquable.
    ════════════════════════════════════════════════════════════════════════ */
 
 var MMEA_MENU = [
-  { label: "Savoir-faire", href: "/#savoir-faire" },
-  { label: "Services", href: null, children: [
+  { label: "Savoir-faire", href: "/#savoir-faire", children: [
       { label: "Cuisines & agencements", href: "/services/cuisines-agencements/" },
       { label: "Escaliers",              href: "/services/escaliers/" },
       { label: "Portes & fenêtres",      href: "/services/portes-fenetres/" },
