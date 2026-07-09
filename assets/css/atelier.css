@@ -98,11 +98,12 @@ header.scrolled{background:rgba(22,17,11,.72);backdrop-filter:blur(16px)}
 /* — menu plein écran — */
 #panel{position:fixed;inset:0;z-index:100;background:var(--nuit-2);clip-path:circle(0 at calc(100% - 62px) 41px);transition:clip-path .8s var(--e-out),visibility .8s;visibility:hidden}
 .menu-open #panel{clip-path:circle(150% at calc(100% - 62px) 41px);visibility:visible}
-#panel .inner{height:100%;display:flex;flex-direction:column;justify-content:center;gap:8px;padding:110px 30px 60px;max-width:var(--max);margin:0 auto}
-#panel a.big{font-family:var(--ff-d);font-weight:800;font-size:clamp(2.3rem,7.5vw,5rem);line-height:1.04;text-transform:uppercase;letter-spacing:-.01em;color:var(--creme);display:flex;align-items:baseline;gap:20px;width:max-content;max-width:100%;opacity:0;transform:translateY(34px);transition:opacity .5s ease,transform .6s var(--e-out),color .3s}
-.menu-open #panel a.big{opacity:1;transform:none;transition-delay:calc(.15s + var(--i)*.07s)}
-#panel a.big small{font-family:var(--ff-b);font-weight:600;font-size:12px;letter-spacing:.3em;color:var(--acc)}
+#panel .inner{height:100%;display:flex;flex-direction:column;justify-content:center;gap:8px;padding:110px 30px 60px;max-width:var(--max);margin:0 auto;overflow-y:auto;overscroll-behavior:contain}
+#panel .big{font-family:var(--ff-d);font-weight:800;font-size:clamp(2rem,6.2vw,4.2rem);line-height:1.04;text-transform:uppercase;letter-spacing:-.01em;color:var(--creme);display:flex;align-items:baseline;gap:20px;width:max-content;max-width:100%;opacity:0;transform:translateY(34px);transition:opacity .5s ease,transform .6s var(--e-out),color .3s}
+.menu-open #panel .big{opacity:1;transform:none;transition-delay:calc(.15s + var(--i)*.07s)}
+#panel .big small{font-family:var(--ff-b);font-weight:600;font-size:12px;letter-spacing:.3em;color:var(--acc)}
 #panel a.big:hover{color:var(--acc)}
+#panel .big.is-label{cursor:default}
 #panel .foot{display:flex;gap:26px;flex-wrap:wrap;margin-top:44px;font-size:13.5px;color:var(--creme-2);opacity:0;transition:opacity .5s ease .5s}
 .menu-open #panel .foot{opacity:1}
 #panel .foot a{border-bottom:1.5px solid var(--ligne)}
@@ -457,24 +458,32 @@ footer{background:var(--jour);color:#6E6150;padding:20px 0 46px}
 @media(max-width:980px){.steps4{grid-template-columns:1fr 1fr}.steps4 li:nth-child(odd){border-left:none;padding-left:4px}.steps4 li{border-top:1px solid var(--ligne)}.steps4 li:nth-child(-n+2){border-top:none}}
 @media(max-width:560px){.steps4{grid-template-columns:1fr}.steps4 li{border-left:none;padding-left:4px}.steps4 li:first-child{border-top:none}.steps4 li:not(:first-child){border-top:1px solid var(--ligne)}.cta-band{padding:26px 22px}}
 
-/* ═════════ MENU PLEIN ÉCRAN — sous-menu « Réalisations » ═════════ */
+/* ═════════ MENU PLEIN ÉCRAN — sous-menu « Services » ═════════
+   Grille de liens en Cabinet Grotesk (même famille que les gros items,
+   simple changement d'échelle) : la hiérarchie se lit sans rupture de
+   style. Un trait vertical accent relie le groupe à son intitulé, et
+   chaque lien porte un tiret qui s'allonge au survol. */
 #panel .p-item{display:flex;flex-direction:column}
-#panel .p-kids{display:flex;flex-wrap:wrap;gap:8px 22px;margin:4px 0 20px 46px;max-width:640px;
+#panel .p-kids{display:grid;grid-template-columns:repeat(2,minmax(0,max-content));gap:12px 54px;
+  margin:16px 0 26px 46px;padding-left:28px;border-left:1.5px solid var(--ligne);
   max-height:0;overflow:hidden;opacity:0;
-  transition:max-height .5s var(--e-out),opacity .4s ease,margin .4s ease}
-.menu-open #panel .p-kids{max-height:220px;opacity:1;
+  transition:max-height .5s var(--e-out),opacity .4s ease}
+.menu-open #panel .p-kids{max-height:300px;opacity:1;
   transition:max-height .6s var(--e-out) .3s,opacity .5s ease .35s}
-#panel .p-kids a{font-family:var(--ff-b);font-weight:500;font-size:15px;text-transform:none;
-  letter-spacing:0;color:var(--creme-2);padding:5px 0;position:relative;transition:color .25s;
-  opacity:0;transform:translateY(8px)}
+#panel .p-kids a{font-family:var(--ff-d);font-weight:700;
+  font-size:clamp(.95rem,1.7vw,1.25rem);line-height:1.15;
+  text-transform:uppercase;letter-spacing:.035em;color:var(--creme-2);
+  display:inline-flex;align-items:center;gap:14px;width:max-content;max-width:100%;
+  opacity:0;transform:translateY(10px);transition:color .25s}
 .menu-open #panel .p-kids a{opacity:1;transform:none;
   transition:color .25s,opacity .4s ease,transform .45s var(--e-out);
-  transition-delay:0s,calc(.45s + var(--k,0)*.04s),calc(.45s + var(--k,0)*.04s)}
-#panel .p-kids a::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--acc);
-  display:inline-block;margin-right:10px;vertical-align:middle;opacity:.5;transition:opacity .25s}
+  transition-delay:0s,calc(.45s + var(--k,0)*.05s),calc(.45s + var(--k,0)*.05s)}
+#panel .p-kids a::before{content:"";width:16px;height:2px;background:var(--acc);
+  flex:none;opacity:.5;transition:width .3s var(--e-out),opacity .25s}
 #panel .p-kids a:hover{color:var(--creme)}
-#panel .p-kids a:hover::before{opacity:1}
+#panel .p-kids a:hover::before{width:28px;opacity:1}
 @media (max-width:760px){
-  #panel .p-kids{margin-left:0;gap:2px 18px;flex-direction:column}
-  .menu-open #panel .p-kids{max-height:340px}
+  #panel .p-kids{grid-template-columns:1fr;gap:9px;margin:12px 0 20px 0;padding-left:20px}
+  .menu-open #panel .p-kids{max-height:440px}
+  #panel .p-kids a{font-size:1rem}
 }

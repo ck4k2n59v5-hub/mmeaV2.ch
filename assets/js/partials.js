@@ -4,11 +4,14 @@
    👉 POUR MODIFIER LE MENU : tu modifies UNIQUEMENT la liste ci-dessous,
       exactement comme avant. Le reste (en-tête, menu plein écran, pied de
       page, curseur, visionneuse, essences) est géré automatiquement.
+
+   Astuce : un élément SANS "href" (href: null) devient un simple intitulé
+   non cliquable qui chapeaute ses sous-liens (ex. « Services »).
    ════════════════════════════════════════════════════════════════════════ */
 
 var MMEA_MENU = [
   { label: "Savoir-faire", href: "/#savoir-faire" },
-  { label: "Réalisations", href: "/realisations/", children: [
+  { label: "Services", href: null, children: [
       { label: "Cuisines & agencements", href: "/services/cuisines-agencements/" },
       { label: "Escaliers",              href: "/services/escaliers/" },
       { label: "Portes & fenêtres",      href: "/services/portes-fenetres/" },
@@ -16,6 +19,7 @@ var MMEA_MENU = [
       { label: "Ébénisterie & mobilier", href: "/services/ebenisterie-mobilier/" },
       { label: "Menuiserie extérieure",  href: "/services/menuiserie-exterieure/" }
   ]},
+  { label: "Réalisations", href: "/realisations/" },
   { label: "Précision", href: "/#precision" },
   { label: "L'atelier", href: "/#atelier"   },
   { label: "Contact",   href: "/#contact"   }
@@ -81,7 +85,11 @@ var MMEA_CTA = { label: "Devis gratuit", href: "/#contact" };
       }).join('') + '</div>';
     }
     var num = (i + 1 < 10 ? '0' : '') + (i + 1);
-    return '<div class="p-item"><a class="big" style="--i:' + i + '" href="' + m.href + '"><small>' + num + '</small>' + m.label + '</a>' + kids + '</div>';
+    /* href renseigné → lien ; href absent/null → simple intitulé de groupe */
+    var big = m.href
+      ? '<a class="big" style="--i:' + i + '" href="' + m.href + '"><small>' + num + '</small>' + m.label + '</a>'
+      : '<span class="big is-label" style="--i:' + i + '"><small>' + num + '</small>' + m.label + '</span>';
+    return '<div class="p-item">' + big + kids + '</div>';
   }).join('');
 
   var headerHTML =
