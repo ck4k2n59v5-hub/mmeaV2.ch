@@ -5,8 +5,8 @@
 /* ═════════════════════════════════════════════════════════════════
    MORET — CONCEPT « LE COPEAU »
    L'atelier de nuit. Un copeau se rabote en 3D à l'entrée, l'essence
-   choisie recolore tout le site, et la queue d'aronde s'assemble à
-   la main. Cabinet Grotesk (l'ébéniste) + Switzer (la Suisse).
+   choisie recolore tout le site, et le meuble témoin pivote et se
+   teinte sous la main. Cabinet Grotesk (l'ébéniste) + Switzer (la Suisse).
    ═════════════════════════════════════════════════════════════════ */
 :root{
   --nuit:#16110B;          /* fond — l'atelier de nuit */
@@ -219,28 +219,27 @@ header.scrolled{background:rgba(22,17,11,.72);backdrop-filter:blur(16px)}
 .gal .bar{height:2px;background:var(--ligne);margin:44px auto 0;max-width:min(520px,72vw);position:relative;overflow:hidden}
 .gal .bar i{position:absolute;inset:0;background:var(--acc);transform:scaleX(0);transform-origin:left}
 
-/* — précision : la queue d'aronde à assembler — */
+/* — précision : le meuble témoin en 3D —
+   Le viewer (assets/js/meuble3d.js) pivote un vrai meuble et le
+   reteinte selon l'essence choisie (mêmes chips que l'établi). */
 .prec{border-top:1px solid var(--ligne);background:var(--nuit-2);overflow:hidden}
 .prec .giant{display:block;font-family:var(--ff-d);font-weight:800;font-size:clamp(4rem,10vw,8.5rem);line-height:1;color:transparent;-webkit-text-stroke:1.5px var(--ligne);pointer-events:none;user-select:none;letter-spacing:-.02em;margin-bottom:26px}
 .prec-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:70px;align-items:center;position:relative;z-index:2}
-.jeu{background:var(--nuit);border:1px solid var(--ligne);border-radius:22px;padding:34px 30px 26px;position:relative}
-.jeu svg{width:100%;height:auto;overflow:hidden;touch-action:none}
-.jeu .board{stroke:var(--creme);stroke-width:2;stroke-linejoin:round;fill:color-mix(in srgb,var(--acc) 10%,transparent)}
-.jeu .bgrain{stroke:color-mix(in srgb,var(--acc) 55%,transparent);stroke-width:1.2;fill:none}
-.jeu .jl{stroke:var(--acc);stroke-width:2.5;fill:none;stroke-linejoin:round;opacity:0;filter:drop-shadow(0 0 8px var(--acc))}
-.jeu.fit .jl{opacity:1;transition:opacity .4s}
-#boardA{cursor:grab}
-#boardA.drag{cursor:grabbing}
-.jeu .status{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:20px;font-weight:600;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--creme-2)}
-.jeu .status .ok{color:var(--acc);opacity:0;transition:opacity .4s}
-.jeu.fit .status .ok{opacity:1}
-.jeu .reset{font-weight:600;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--creme-2);border-bottom:1.5px solid var(--ligne-2);padding:8px 0;transition:.3s}
-.jeu .reset:hover{color:var(--acc);border-color:var(--acc)}
-.dust{position:absolute;width:5px;height:5px;border-radius:50%;background:var(--acc);pointer-events:none;opacity:0}
-.jeu.fit .dust{animation:dust .9s ease-out forwards}
-@keyframes dust{0%{opacity:1;transform:translate(0,0) scale(1)}100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(.3)}}
-@keyframes fitpulse{0%{transform:scale(1)}40%{transform:scale(1.015)}100%{transform:scale(1)}}
-.jeu.fit{animation:fitpulse .5s var(--e-snap)}
+.meuble{background:var(--nuit);border:1px solid var(--ligne);border-radius:22px;padding:26px 26px 20px;position:relative}
+.m3d{position:relative;aspect-ratio:5/4;border-radius:14px;overflow:hidden;cursor:grab;touch-action:pan-y;background:radial-gradient(120% 90% at 50% 14%,color-mix(in srgb,var(--acc) 8%,transparent),transparent 62%);transition:background 1s}
+.m3d.drag{cursor:grabbing}
+.m3d canvas{position:absolute;inset:0;width:100%!important;height:100%!important}
+.m3d-sol{position:absolute;left:50%;bottom:8%;width:70%;height:12%;transform:translateX(-50%);border-radius:50%;background:radial-gradient(ellipse at center,rgba(0,0,0,.55),transparent 68%);pointer-events:none;opacity:0;transition:opacity .8s ease}
+.m3d.pret .m3d-sol{opacity:1}
+.m3d-note{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;font-weight:600;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--creme-2)}
+.m3d.pret .m3d-note{display:none}
+.meuble .status{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:18px;font-weight:600;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--creme-2);flex-wrap:wrap}
+.meuble .reset{font-weight:600;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--creme-2);border-bottom:1.5px solid var(--ligne-2);padding:8px 0;transition:.3s}
+.meuble .reset:hover{color:var(--acc);border-color:var(--acc)}
+.meuble .reset[hidden]{display:none}
+.prec-note{font-weight:600;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--creme-2);margin-top:34px}
+.prec-chips{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
+@media (max-width:560px){.meuble{padding:18px 16px 14px}.m3d{aspect-ratio:1/1}}
 
 /* — méthode : l'onde du geste — */
 .meth .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--ligne)}

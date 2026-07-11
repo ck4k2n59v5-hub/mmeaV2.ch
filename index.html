@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>MORET — Menuiserie, Ébénisterie &amp; Agencement sur mesure à Yens (Vaud)</title>
-<meta name="description" content="Atelier familial de menuiserie, ébénisterie et agencement sur mesure à Yens (Vaud) : cuisines, escaliers, portes, fenêtres, cloisons. Du conseil à la pose." />
+<meta name="description" content="Atelier familial de menuiserie, ébénisterie et agencement sur mesure à Yens (Vaud) : cuisines, escaliers, portes, fenêtres, cloisons. Du conseil à la pose." />
 <meta name="author" content="MORET — Menuiserie & Agencement" />
 <meta name="theme-color" content="#16110B" />
 <!-- ► À ADAPTER au déploiement : remplacez https://mmea.ch par votre domaine final -->
@@ -210,7 +210,10 @@
   </div>
 </section>
 
-<!-- ═══ PRÉCISION : ASSEMBLEZ LA QUEUE D'ARONDE ═══ -->
+<!-- ═══ PRÉCISION : LE MEUBLE TÉMOIN EN 3D ═══ -->
+<!-- ► Le meuble est chargé par assets/js/meuble3d.js ; ses réglages
+     (teintes par essence, vitesse de rotation, porte coulissante)
+     sont dans le bloc MMEA_MEUBLE en tête de ce fichier. -->
 <section class="sect prec io" id="precision" data-io>
   <div class="wrap" style="position:relative">
     <span class="giant" aria-hidden="true">0,1 MM</span>
@@ -218,28 +221,23 @@
       <div>
         <p class="tag rv" style="--i:0">La précision</p>
         <h2 class="rv" style="--i:1">Un dixième<br/>de millimètre <span class="ghost">fait tout.</span></h2>
-        <p class="lead rv" style="--i:2">Une queue d'aronde ne se rattrape pas : le trait juste, l'angle juste, l'ajustage juste. Essayez vous-même — glissez la planche jusqu'à l'assemblage parfait. C'est ce geste que nous répétons sur chaque ouvrage, du relevé des mesures à la pose finale.</p>
+        <p class="lead rv" style="--i:2">Une pièce juste supporte d'être regardée sous tous les angles. Faites tourner ce meuble témoin, ouvrez sa porte, changez d'essence : le geste reste le même sur chaque ouvrage — ajusté au dixième, à votre mesure et à votre goût.</p>
+        <p class="prec-note rv" style="--i:3">L'essence du meuble — et de tout l'atelier :</p>
+        <div class="prec-chips rv" style="--i:4" role="group" aria-label="Essence du meuble">
+          <button class="chip" style="--sw:linear-gradient(120deg,#D9A15C,#A9793F)" data-ess="chene" aria-pressed="true" data-hot><span class="sw"></span>Chêne</button>
+          <button class="chip" style="--sw:linear-gradient(120deg,#7A5433,#4A3520)" data-ess="noyer" aria-pressed="false" data-hot><span class="sw"></span>Noyer</button>
+          <button class="chip" style="--sw:linear-gradient(120deg,#EBD5A1,#C9A96A)" data-ess="frene" aria-pressed="false" data-hot><span class="sw"></span>Frêne</button>
+          <button class="chip" style="--sw:linear-gradient(120deg,#D2925A,#96602F)" data-ess="meleze" aria-pressed="false" data-hot><span class="sw"></span>Mélèze</button>
+        </div>
       </div>
-      <div class="jeu rv" id="jeu" style="--i:1">
-        <svg viewBox="0 0 760 300" role="img" aria-label="Jeu : glissez la planche de gauche pour assembler la queue d'aronde">
-          <g class="board-b">
-            <path class="board" d="M372 90 H676 V214 H372 V197 L420 205 V179 L372 187 V158 L420 166 V140 L372 148 V119 L420 127 V101 L372 109 Z"/>
-            <path class="bgrain" d="M444 126 C 510 118, 580 134, 650 126"/>
-            <path class="bgrain" d="M444 176 C 514 184, 590 168, 650 176"/>
-          </g>
-          <g id="boardA" transform="translate(-110,0)" tabindex="-1">
-            <path class="board" d="M84 90 H372 V109 L420 101 V127 L372 119 V148 L420 140 V166 L372 158 V187 L420 179 V205 L372 197 V214 H84 Z"/>
-            <path class="bgrain" d="M112 122 C 190 114, 270 130, 348 122"/>
-            <path class="bgrain" d="M112 172 C 196 180, 276 164, 348 172"/>
-          </g>
-          <path class="jl" d="M372 90 V109 L420 101 V127 L372 119 V148 L420 140 V166 L372 158 V187 L420 179 V205 L372 197 V214"/>
-        </svg>
+      <div class="meuble rv" id="meuble" style="--i:1">
+        <div class="m3d" id="m3dStage" tabindex="0" aria-label="Meuble témoin en trois dimensions — glissez ou utilisez les flèches gauche et droite pour le faire pivoter">
+          <div class="m3d-sol" aria-hidden="true"></div>
+          <p class="m3d-note" id="m3dNote">Le meuble arrive de l'atelier…</p>
+        </div>
         <div class="status">
-          <span class="ok">✓ Ajusté au dixième — bien joué.</span>
-          <span style="display:flex;gap:20px">
-            <button class="reset" id="assembler" data-hot>Assembler</button>
-            <button class="reset" id="rejouer" data-hot>Rejouer</button>
-          </span>
+          <span>Glissez pour le faire pivoter</span>
+          <button class="reset" id="m3dPorte" data-hot hidden>Ouvrir la porte</button>
         </div>
       </div>
     </div>
@@ -389,6 +387,10 @@
 <script src="/assets/js/partials.js"></script>
 <script src="/assets/js/projets.js"></script>
 <script src="/assets/js/copeau3d.js"></script>
+<!-- ► Le meuble témoin 3D : lecteur glTF officiel de Three r128 (auto-hébergé)
+     puis le module de l'atelier. Réglages dans meuble3d.js (bloc MMEA_MEUBLE). -->
+<script src="/assets/js/vendor/GLTFLoader.js"></script>
+<script src="/assets/js/meuble3d.js"></script>
 <script>
 
 (function(){
@@ -434,45 +436,6 @@ function galSetup(){
   galTick();
 }
 galSetup();addEventListener('resize',galSetup);
-
-/* — la queue d'aronde à assembler — */
-var jeu=document.getElementById('jeu'),bA=document.getElementById('boardA');
-if(jeu&&bA){
-  var svgEl=jeu.querySelector('svg'),TX0=-110,txv=TX0,dragging=false,px=0;
-  var setTx=function(v){txv=Math.max(-150,Math.min(16,v));bA.setAttribute('transform','translate('+txv+',0)')};
-  var scaleF=function(){var w=svgEl.getBoundingClientRect().width;return 760/Math.max(1,w)};
-  var fit=function(){
-    setTx(0);jeu.classList.add('fit');
-    for(var i=0;i<14;i++){
-      var d=document.createElement('span');d.className='dust';
-      d.style.left=(45+Math.random()*11)+'%';d.style.top=(28+Math.random()*28)+'%';
-      d.style.setProperty('--dx',(Math.random()*130-65)+'px');
-      d.style.setProperty('--dy',(-30-Math.random()*85)+'px');
-      jeu.appendChild(d);
-      setTimeout((function(el){return function(){el.remove()}})(d),1000);
-    }
-    if(window.MMEA_COPEAU)window.MMEA_COPEAU.kick(.09);
-  };
-  bA.addEventListener('pointerdown',function(e){
-    if(jeu.classList.contains('fit'))return;
-    dragging=true;px=e.clientX;bA.classList.add('drag');
-    if(bA.setPointerCapture){try{bA.setPointerCapture(e.pointerId)}catch(_){}}
-    e.preventDefault();
-  });
-  addEventListener('pointermove',function(e){if(!dragging)return;var dx=(e.clientX-px)*scaleF();px=e.clientX;setTx(txv+dx)});
-  addEventListener('pointerup',function(){if(!dragging)return;dragging=false;bA.classList.remove('drag');if(Math.abs(txv)<12)fit()});
-  document.getElementById('assembler').addEventListener('click',function(){
-    if(jeu.classList.contains('fit'))return;
-    if(reduced){fit();return}
-    var from=txv,t0=null;
-    (function st(t){
-      if(t===undefined){requestAnimationFrame(st);return}
-      if(!t0)t0=t;var p=Math.min(1,(t-t0)/500);p=1-Math.pow(1-p,3);setTx(from*(1-p));
-      if(p<1)requestAnimationFrame(st);else fit();
-    })();
-  });
-  document.getElementById('rejouer').addEventListener('click',function(){jeu.classList.remove('fit');setTx(TX0)});
-}
 
 /* — générations : cycle doux — */
 var ys=[].slice.call(document.querySelectorAll('#years span'));
