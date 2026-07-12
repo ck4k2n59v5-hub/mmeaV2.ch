@@ -57,8 +57,11 @@ var MMEA_MEUBLE = {
   var started = false, visible = true;
   function tryInit(){
     if (started) return; started = true;
-    if (!window.THREE || !THREE.GLTFLoader) { ko('Le meuble 3D n\u2019a pas pu se charger.'); return; }
-    try { init(); } catch (e) { ko('Le meuble 3D n\u2019a pas pu se charger.'); }
+    if (!window.THREE || !THREE.GLTFLoader) {
+      console.error('[meuble3d] THREE ou THREE.GLTFLoader introuvable — vérifier l\u2019ordre des <script> : three.min.js puis /assets/js/vendor/GLTFLoader.js avant meuble3d.js.');
+      ko('Le meuble 3D n\u2019a pas pu se charger.'); return;
+    }
+    try { init(); } catch (e) { console.error('[meuble3d] initialisation impossible :', e); ko('Le meuble 3D n\u2019a pas pu se charger.'); }
   }
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function(es){
@@ -72,7 +75,7 @@ var MMEA_MEUBLE = {
     var renderer;
     try {
       renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-    } catch (e) { ko('Votre navigateur ne permet pas la 3D (WebGL).'); return; }
+    } catch (e) { console.warn('[meuble3d] WebGL indisponible :', e); ko('Votre navigateur ne permet pas la 3D (WebGL).'); return; }
     renderer.setClearColor(0x000000, 0);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
     renderer.outputEncoding = THREE.sRGBEncoding;
@@ -212,7 +215,11 @@ var MMEA_MEUBLE = {
       stage.classList.add('pret');
       idleT = performance.now();
       pending = 3;
-    }, undefined, function(){ ko('Le meuble 3D n\u2019a pas pu se charger.'); });
+      console.info('[meuble3d] meuble chargé — ' + MMEA_MEUBLE.modele);
+    }, undefined, function(err){
+      console.error('[meuble3d] ' + MMEA_MEUBLE.modele + ' n\u2019a pas pu être chargé ou lu :', err);
+      ko('Le meuble 3D n\u2019a pas pu se charger.');
+    });
 
     /* — pivoter à la main (souris, doigt, clavier) — */
     stage.addEventListener('pointerdown', function(e){
